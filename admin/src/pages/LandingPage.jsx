@@ -41,11 +41,13 @@ function LandingPage() {
   /* ================= CONTACT ================= */
   const submitContact = async (e) => {
     e.preventDefault();
+
     await fetch("https://project-manager-u82x.onrender.com/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(contact),
     });
+
     alert("We will contact you soon!");
     setContact({ name: "", email: "", mobile: "", city: "" });
   };
@@ -53,18 +55,19 @@ function LandingPage() {
   /* ================= SUBSCRIBE ================= */
   const subscribe = async (e) => {
     e.preventDefault();
+
     await fetch("https://project-manager-u82x.onrender.com/api/subscribe", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
     });
+
     alert("Subscribed successfully!");
     setEmail("");
   };
 
   return (
     <div className="landing">
-
       {/* ================= HEADER ================= */}
       <header className="header">
         <div className="logo">ProjectManager</div>
@@ -75,7 +78,6 @@ function LandingPage() {
           <a href="#clients">Clients</a>
           <a href="#contact">Contact</a>
 
-          {/* ✅ SECURED ADMIN */}
           <button className="nav-btn" onClick={handleAdminClick}>
             Admin
           </button>
@@ -88,6 +90,7 @@ function LandingPage() {
           <h1>
             Build Faster. <span>Launch Smarter.</span>
           </h1>
+
           <p>
             A modern platform designed to help teams plan, build and deliver
             products efficiently.
@@ -111,9 +114,21 @@ function LandingPage() {
       {/* ================= ABOUT ================= */}
       <section className="about-pdf" id="about">
         <div className="about-images">
-          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" className="img img-left" alt="" />
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" className="img img-center" alt="" />
-          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216" className="img img-right" alt="" />
+          <img
+            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+            className="img img-left"
+            alt=""
+          />
+          <img
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+            className="img img-center"
+            alt=""
+          />
+          <img
+            src="https://images.unsplash.com/photo-1521791136064-7986c2920216"
+            className="img img-right"
+            alt=""
+          />
         </div>
 
         <h2 className="section-title center">About Us</h2>
@@ -143,17 +158,28 @@ function LandingPage() {
 
         <div className="why-grid">
           <div className="why-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135673.png" alt="" />
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3135/3135673.png"
+              alt=""
+            />
             <h3>Potential ROI</h3>
             <p>Solutions that maximize return on investment.</p>
           </div>
+
           <div className="why-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" alt="" />
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png"
+              alt=""
+            />
             <h3>Design</h3>
             <p>User-centric and visually engaging designs.</p>
           </div>
+
           <div className="why-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/1077/1077976.png" alt="" />
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/1077/1077976.png"
+              alt=""
+            />
             <h3>Marketing</h3>
             <p>Strategies that reach the right audience.</p>
           </div>
@@ -205,25 +231,33 @@ function LandingPage() {
             <input
               placeholder="Full Name"
               value={contact.name}
-              onChange={e => setContact({ ...contact, name: e.target.value })}
+              onChange={e =>
+                setContact({ ...contact, name: e.target.value })
+              }
               required
             />
             <input
               placeholder="Email Address"
               value={contact.email}
-              onChange={e => setContact({ ...contact, email: e.target.value })}
+              onChange={e =>
+                setContact({ ...contact, email: e.target.value })
+              }
               required
             />
             <input
               placeholder="Mobile Number"
               value={contact.mobile}
-              onChange={e => setContact({ ...contact, mobile: e.target.value })}
+              onChange={e =>
+                setContact({ ...contact, mobile: e.target.value })
+              }
               required
             />
             <input
               placeholder="Area / City"
               value={contact.city}
-              onChange={e => setContact({ ...contact, city: e.target.value })}
+              onChange={e =>
+                setContact({ ...contact, city: e.target.value })
+              }
               required
             />
             <button className="contact-btn">Get Quick Quote</button>
@@ -235,6 +269,7 @@ function LandingPage() {
       <section className="newsletter-bar">
         <div className="newsletter-inner">
           <span>Subscribe to our Newsletter</span>
+
           <form onSubmit={subscribe}>
             <input
               placeholder="Enter Email Address"
