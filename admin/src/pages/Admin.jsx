@@ -101,7 +101,7 @@ function Admin() {
   };
 
   /* ================= CLIENT ================= */
-
+// eslint-disable-next-line no-unused-vars
   const saveClient = async (e) => {
     e.preventDefault();
 
