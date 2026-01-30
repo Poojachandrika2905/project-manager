@@ -1,0 +1,412 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.landing {
+  color: #1f2937;
+}
+
+/* ================= HEADER ================= */
+.header {
+  position: sticky;
+  top: 0;
+  height: 72px;
+  background: white;
+  padding: 0 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+}
+
+.nav-btn {
+  padding: 8px 16px;
+  background: #2563eb;
+  color: white !important;
+  border-radius: 6px;
+}
+
+/* ================= HERO ================= */
+.hero {
+  min-height: calc(100vh - 72px);
+  padding: 0 80px;
+  background: linear-gradient(180deg, #f5f7fb, #ffffff);
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 640px;
+}
+
+.hero h1 {
+  font-size: 52px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.hero h1 span {
+  color: #2563eb;
+}
+
+.hero p {
+  margin-bottom: 32px;
+  color: #4b5563;
+  font-size: 16px;
+}
+
+.hero-actions {
+  display: flex;
+}
+
+.secondary-outline {
+  padding: 14px 32px;
+  background: transparent;
+  border: 2px solid #2563eb;
+  color: #2563eb;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* ================= ABOUT US ================= */
+.about-pdf {
+  padding: 90px 80px;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  position: relative;
+  overflow: hidden;
+}
+
+/* background shapes */
+.about-pdf::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  left: -120px;
+  width: 320px;
+  height: 320px;
+  background: rgba(37, 99, 235, 0.08);
+  border-radius: 50%;
+}
+
+.about-pdf::after {
+  content: "";
+  position: absolute;
+  bottom: -120px;
+  right: -120px;
+  width: 260px;
+  height: 260px;
+  background: rgba(249, 115, 22, 0.08);
+  border-radius: 50%;
+}
+
+/* images */
+.about-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.about-images img {
+  width: 220px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  animation: float 6s ease-in-out infinite;
+}
+
+.img-left {
+  transform: translateX(60px) rotate(-4deg);
+}
+
+.img-center {
+  width: 280px;
+  height: 180px;
+  z-index: 3;
+}
+
+.img-right {
+  transform: translateX(-60px) rotate(4deg);
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.section-title {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+.underline {
+  width: 60px;
+  height: 4px;
+  background: #2563eb;
+  margin: 10px auto 22px;
+  border-radius: 2px;
+}
+
+.about-desc {
+  max-width: 640px;
+  margin: 0 auto 26px;
+  font-size: 15px;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.about-btn {
+  padding: 8px 24px;
+  font-size: 14px;
+  border: 1px solid #2563eb;
+  background: transparent;
+  color: #2563eb;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.about-btn:hover {
+  background: #2563eb;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ================= WHY CHOOSE US ================= */
+.why-section {
+  padding: 90px 80px;
+  background: #f9fafb;
+  text-align: center;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.why-card img {
+  width: 56px;
+  margin-bottom: 16px;
+}
+
+.why-card h3 {
+  font-size: 18px;
+  color: #2563eb;
+  margin-bottom: 6px;
+}
+
+.why-card p {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* ================= SECTIONS ================= */
+.section {
+  padding: 90px 80px;
+}
+
+.section.light {
+  background: #fafafa;
+}
+
+/* ================= MARQUEE ================= */
+.marquee {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: scrollLeft 25s linear infinite;
+}
+
+@keyframes scrollLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ================= CARD ================= */
+.card {
+  width: 280px;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card h3 {
+  margin: 12px 0;
+}
+
+.card span {
+  font-size: 14px;
+  color: #2563eb;
+}
+
+.secondary-btn {
+  margin-top: 10px;
+  padding: 8px 18px;
+  border: 1px solid #d1d5db;
+  background: transparent;
+  border-radius: 6px;
+}
+
+/* ================= CLIENT ================= */
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* ================= CONTACT ================= */
+.contact-section {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-box {
+  background: #4c5c8a;
+  padding: 30px;
+  border-radius: 12px;
+  width: 320px;
+  color: white;
+}
+
+.contact-box h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: none;
+}
+
+.contact-btn {
+  width: 100%;
+  padding: 12px;
+  background: #f97316;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+/* ================= NEWSLETTER ================= */
+.newsletter-bar {
+  background: #2563eb;
+  padding: 20px;
+  color: white;
+}
+
+.newsletter-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.newsletter-inner input {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  margin-right: 8px;
+}
+
+.newsletter-inner button {
+  padding: 8px 16px;
+  background: white;
+  color: #2563eb;
+  border-radius: 4px;
+  border: none;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  padding: 20px;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .header {
+    padding: 0 24px;
+  }
+
+  .hero {
+    padding: 40px 24px;
+  }
+
+  .section,
+  .why-section,
+  .about-pdf {
+    padding: 70px 24px;
+  }
+
+  .about-images {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .img-left,
+  .img-right {
+    transform: none;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}
