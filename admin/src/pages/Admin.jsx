@@ -25,10 +25,10 @@ function Admin() {
   /* ================= FETCH ================= */
 
   const fetchAll = async () => {
-    const p = await fetch("http://localhost:5000/api/projects").then(r => r.json());
-    const c = await fetch("http://localhost:5000/api/clients").then(r => r.json());
-    const ct = await fetch("http://localhost:5000/api/contact").then(r => r.json());
-    const s = await fetch("http://localhost:5000/api/subscribe").then(r => r.json());
+    const p = await fetch("https://project-manager-u82x.onrender.com/api/projects").then(r => r.json());
+    const c = await fetch("https://project-manager-u82x.onrender.com/api/clients").then(r => r.json());
+    const ct = await fetch("https://project-manager-u82x.onrender.com/api/contact").then(r => r.json());
+    const s = await fetch("https://project-manager-u82x.onrender.com/api/subscribe").then(r => r.json());
 
     setProjects(p || []);
     setClients(c || []);
@@ -46,8 +46,8 @@ function Admin() {
     e.preventDefault();
 
     const url = editProjectId
-      ? `http://localhost:5000/api/projects/${editProjectId}`
-      : "http://localhost:5000/api/projects";
+      ? `https://project-manager-u82x.onrender.com/api/projects/${editProjectId}`
+      : "https://project-manager-u82x.onrender.com/api/projects";
 
     const method = editProjectId ? "PUT" : "POST";
 
@@ -65,7 +65,7 @@ function Admin() {
   };
 
   const deleteProject = async (id) => {
-    await fetch(`http://localhost:5000/api/projects/${id}`, { method: "DELETE" });
+    await fetch(`https://project-manager-u82x.onrender.com/api/projects/${id}`, { method: "DELETE" });
     fetchAll();
   };
 
@@ -75,8 +75,8 @@ function Admin() {
     e.preventDefault();
 
     const url = editClientId
-      ? `http://localhost:5000/api/clients/${editClientId}`
-      : "http://localhost:5000/api/clients";
+      ? `https://project-manager-u82x.onrender.com/api/clients/${editClientId}`
+      : "https://project-manager-u82x.onrender.com/api/clients";
 
     const method = editClientId ? "PUT" : "POST";
 
@@ -100,7 +100,7 @@ function Admin() {
   };
 
   const deleteClient = async (id) => {
-    await fetch(`http://localhost:5000/api/clients/${id}`, { method: "DELETE" });
+    await fetch(`https://project-manager-u82x.onrender.com/api/clients/${id}`, { method: "DELETE" });
     fetchAll();
   };
 
