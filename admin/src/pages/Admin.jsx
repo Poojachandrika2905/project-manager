@@ -25,39 +25,26 @@ function Admin() {
   const [contacts, setContacts] = useState([]);
   const [subscribers, setSubscribers] = useState([]);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  /* ================= FETCH (FIXED) ================= */
+  /* ================= FETCH ================= */
 
   const fetchAll = async () => {
     try {
       setLoading(true);
 
-      const [
-        projectsRes,
-        clientsRes,
-        contactsRes,
-        subscribersRes,
-      ] = await Promise.all([
-        fetch(`${API_BASE}/api/projects`),
-        fetch(`${API_BASE}/api/clients`),
-        fetch(`${API_BASE}/api/contact`),
-        fetch(`${API_BASE}/api/subscribe`),
-      ]);
+      const p = await fetch(`${API_BASE}/api/projects`).then(r => r.json());
+      const c = await fetch(`${API_BASE}/api/clients`).then(r => r.json());
+      const ct = await fetch(`${API_BASE}/api/contact`).then(r => r.json());
+      const s = await fetch(`${API_BASE}/api/subscribe`).then(r => r.json());
 
-      const projectsData = await projectsRes.json();
-      const clientsData = await clientsRes.json();
-      const contactsData = await contactsRes.json();
-      const subscribersData = await subscribersRes.json();
-
-      setProjects(Array.isArray(projectsData) ? projectsData : []);
-      setClients(Array.isArray(clientsData) ? clientsData : []);
-      setContacts(Array.isArray(contactsData) ? contactsData : []);
-      setSubscribers(Array.isArray(subscribersData) ? subscribersData : []);
-
+      setProjects(p || []);
+      setClients(c || []);
+      setContacts(ct || []);
+      setSubscribers(s || []);
     } catch (err) {
-      console.error("Admin fetch error:", err);
-      alert("Admin data failed to load. Please refresh once.");
+      console.error("Admin API error:", err);
+      alert("Failed to load admin data. Please refresh.");
     } finally {
       setLoading(false);
     }
@@ -101,7 +88,7 @@ function Admin() {
   };
 
   /* ================= CLIENT ================= */
-// eslint-disable-next-line no-unused-vars
+
   const saveClient = async (e) => {
     e.preventDefault();
 
@@ -147,16 +134,31 @@ function Admin() {
       <div className="card">
         <h2>{editProjectId ? "Edit Project" : "Add Project"}</h2>
         <form onSubmit={saveProject}>
-          <input placeholder="Image URL" value={pImage} onChange={e => setPImage(e.target.value)} required />
-          <input placeholder="Project Name" value={pName} onChange={e => setPName(e.target.value)} required />
-          <textarea placeholder="Description" value={pDescription} onChange={e => setPDescription(e.target.value)} required />
+          <input
+            placeholder="Image URL"
+            value={pImage}
+            onChange={e => setPImage(e.target.value)}
+            required
+          />
+          <input
+            placeholder="Project Name"
+            value={pName}
+            onChange={e => setPName(e.target.value)}
+            required
+          />
+          <textarea
+            placeholder="Description"
+            value={pDescription}
+            onChange={e => setPDescription(e.target.value)}
+            required
+          />
           <button className="btn-primary">Save Project</button>
         </form>
       </div>
 
       <h2 className="section-title">Projects</h2>
       <div className="grid">
-        {projects.length === 0 && !loading && <p>No projects found</p>}
+        {projects.length === 0 && <p>No projects found</p>}
         {projects.map(p => (
           <div className="item-card" key={p._id}>
             <img src={p.image} className="project-full-image" alt="" />
@@ -167,16 +169,34 @@ function Admin() {
               setPName(p.name);
               setPDescription(p.description);
               setEditProjectId(p._id);
-            }}>Edit</button>
-            <button className="btn-danger" onClick={() => deleteProject(p._id)}>Delete</button>
+            }}>
+              Edit
+            </button>
+            <button
+              className="btn-danger"
+              onClick={() => deleteProject(p._id)}
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>
 
-      {/* CLIENTS */}
+      {/* CLIENT FORM */}
+      <div className="card">
+        <h2>{editClientId ? "Edit Client" : "Add Client"}</h2>
+        <form onSubmit={saveClient}>
+          <input placeholder="Image URL" value={cImage} onChange={e => setCImage(e.target.value)} required />
+          <input placeholder="Client Name" value={cName} onChange={e => setCName(e.target.value)} required />
+          <textarea placeholder="Description" value={cDescription} onChange={e => setCDescription(e.target.value)} required />
+          <input placeholder="Designation" value={cDesignation} onChange={e => setCDesignation(e.target.value)} required />
+          <button className="btn-secondary">Save Client</button>
+        </form>
+      </div>
+
       <h2 className="section-title">Clients</h2>
       <div className="grid">
-        {clients.length === 0 && !loading && <p>No clients found</p>}
+        {clients.length === 0 && <p>No clients found</p>}
         {clients.map(c => (
           <div className="item-card" key={c._id}>
             <img src={c.image} alt="" />
@@ -189,8 +209,15 @@ function Admin() {
               setCDescription(c.description);
               setCDesignation(c.designation);
               setEditClientId(c._id);
-            }}>Edit</button>
-            <button className="btn-danger" onClick={() => deleteClient(c._id)}>Delete</button>
+            }}>
+              Edit
+            </button>
+            <button
+              className="btn-danger"
+              onClick={() => deleteClient(c._id)}
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>
