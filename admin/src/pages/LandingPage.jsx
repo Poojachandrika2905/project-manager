@@ -20,22 +20,16 @@ function LandingPage() {
   useEffect(() => {
     fetch("https://project-manager-u82x.onrender.com/api/projects")
       .then(res => res.json())
-      .then(data => setProjects(data));
+      .then(data => setProjects(data || []));
 
     fetch("https://project-manager-u82x.onrender.com/api/clients")
       .then(res => res.json())
-      .then(data => setClients(data));
+      .then(data => setClients(data || []));
   }, []);
 
-  /* ================= ADMIN GATE ================= */
+  /* ================= ADMIN (NO PASSWORD, NO UI CHANGE) ================= */
   const handleAdminClick = () => {
-    const password = prompt("Enter Admin Password");
-
-    if (password === "admin123") {
-      navigate("/admin");
-    } else {
-      alert("Invalid Admin Password");
-    }
+    navigate("/admin");
   };
 
   /* ================= CONTACT ================= */
@@ -75,7 +69,7 @@ function LandingPage() {
           <a href="#clients">Clients</a>
           <a href="#contact">Contact</a>
 
-          {/* ✅ SECURED ADMIN */}
+          {/* ✅ ADMIN BUTTON (UI SAME, LOGIC FIXED) */}
           <button className="nav-btn" onClick={handleAdminClick}>
             Admin
           </button>
@@ -202,30 +196,14 @@ function LandingPage() {
           <h3>Get a Free Consultation</h3>
 
           <form onSubmit={submitContact}>
-            <input
-              placeholder="Full Name"
-              value={contact.name}
-              onChange={e => setContact({ ...contact, name: e.target.value })}
-              required
-            />
-            <input
-              placeholder="Email Address"
-              value={contact.email}
-              onChange={e => setContact({ ...contact, email: e.target.value })}
-              required
-            />
-            <input
-              placeholder="Mobile Number"
-              value={contact.mobile}
-              onChange={e => setContact({ ...contact, mobile: e.target.value })}
-              required
-            />
-            <input
-              placeholder="Area / City"
-              value={contact.city}
-              onChange={e => setContact({ ...contact, city: e.target.value })}
-              required
-            />
+            <input placeholder="Full Name" value={contact.name}
+              onChange={e => setContact({ ...contact, name: e.target.value })} required />
+            <input placeholder="Email Address" value={contact.email}
+              onChange={e => setContact({ ...contact, email: e.target.value })} required />
+            <input placeholder="Mobile Number" value={contact.mobile}
+              onChange={e => setContact({ ...contact, mobile: e.target.value })} required />
+            <input placeholder="Area / City" value={contact.city}
+              onChange={e => setContact({ ...contact, city: e.target.value })} required />
             <button className="contact-btn">Get Quick Quote</button>
           </form>
         </div>
@@ -236,12 +214,8 @@ function LandingPage() {
         <div className="newsletter-inner">
           <span>Subscribe to our Newsletter</span>
           <form onSubmit={subscribe}>
-            <input
-              placeholder="Enter Email Address"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-            />
+            <input placeholder="Enter Email Address" value={email}
+              onChange={e => setEmail(e.target.value)} required />
             <button>Subscribe</button>
           </form>
         </div>
